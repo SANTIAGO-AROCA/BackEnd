@@ -1,6 +1,13 @@
+using BackEndProyecto.Context;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var Constring = builder.Configuration.GetConnectionString("connection");
+builder.Services.AddDbContext<dbcontextBank>(options => options.UseSqlServer(Constring));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
