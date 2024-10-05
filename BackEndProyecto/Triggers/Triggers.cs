@@ -13,9 +13,8 @@ class Program
             AS
             BEGIN
                 UPDATE BankAccounts
-                SELECT i.Amount
+                //SELECT i.Amount
                 //IF balance - i.Amount < 0
-                    
                     
                 SET balance = balance - i.Amount
                 FROM inserted i
