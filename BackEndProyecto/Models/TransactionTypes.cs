@@ -8,6 +8,7 @@ namespace BackEndProyecto.Models
         public required int TransactionTypeId { get; set; }
         public required string TransactionTypeNames { get; set; }
         public string Description { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
     }
 }

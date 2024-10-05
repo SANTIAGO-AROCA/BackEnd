@@ -8,5 +8,6 @@ namespace BackEndProyecto.Models
         public required int ProductStateId { get; set; }
         public required string ProductStateName { get; set; }
         public string ProductStateDescription { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

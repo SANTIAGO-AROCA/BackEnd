@@ -14,6 +14,7 @@ namespace BackEndProyecto.Context
         {
             base.OnModelCreating(modelBuilder);
 
+            //Llaves primarias
             modelBuilder.Entity<Users>()
             .HasKey( u => u.UserId);
 
@@ -58,8 +59,20 @@ namespace BackEndProyecto.Context
 
             modelBuilder.Entity<UserStates>()
             .HasKey(u => u.UserStateId);
+
+            // Configurar la relación uno a uno entre Users y BankAccounts
+            modelBuilder.Entity<Users>()
+            .HasOne(u => u.BankAccount)
+            .WithOne(b => b.Users)
+            .HasForeignKey<BankAccounts>(b => b.UserId);
+
+            // Configuracion relacion uno a muchos entre BankAccounts y AccountTypes
+            modelBuilder.Entity<BankAccounts>()
+            .HasOne(b => b.AccountTypes)
+            .WithMany(a => a.BankAccounts)
+            .HasForeignKey(b => b.AccountType);
         }
-        
+
         public DbSet<Users> users { get; set; }
         public DbSet<UserStates> UserStates { get; set; }
         public DbSet<Rols> Rols { get; set; }

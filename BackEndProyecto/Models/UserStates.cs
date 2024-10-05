@@ -8,5 +8,6 @@ namespace BackEndProyecto.Models
         public int UserStateId { get; set; }
         public required string UserStateName { get; set; }
         public string UserStateDescription { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

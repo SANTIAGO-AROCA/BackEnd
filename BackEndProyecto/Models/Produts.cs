@@ -13,6 +13,7 @@ namespace BackEndProyecto.Models
         public required int Price { get; set; }
         public required DateTime CrateDate { get; set; }
         public required int ProductStateId { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
     }
 }

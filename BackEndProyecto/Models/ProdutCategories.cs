@@ -8,5 +8,6 @@ namespace BackEndProyecto.Models
         public required int CategoryId { get; set; }
         public required string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

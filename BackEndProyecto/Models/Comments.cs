@@ -11,5 +11,6 @@ namespace BackEndProyecto.Models
         public required int UserId { get; set; }
         public required int CommentType { get; set; }
         public required DateTime CommentDate { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

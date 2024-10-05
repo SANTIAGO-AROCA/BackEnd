@@ -10,5 +10,6 @@ namespace BackEndProyecto.Models
         public required int OrderDetailsId { get; set; }
         public required DateTime OrderDate { get; set; }
         public required int PaymentId { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }

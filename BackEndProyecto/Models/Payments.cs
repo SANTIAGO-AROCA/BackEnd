@@ -8,5 +8,6 @@
         public required int PaymentMethodType { get; set; }
         public required DateTime PayDate { get; set; }
         public required int PaymentState { get; set; }
+        public bool IsDeleted { get; set; } = false;
     }
 }
