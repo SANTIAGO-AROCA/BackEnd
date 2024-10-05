@@ -58,27 +58,23 @@ namespace BackEndProyecto.Context
 
             modelBuilder.Entity<UserStates>()
             .HasKey(u => u.UserStateId);
-
-            
-
         }
         
-        public DbSet<UserStates> UserStates;
-        public DbSet<Users> Users;
-        public DbSet<Rols> Rols;
-        public DbSet<Produts> Produts;
-        public DbSet<ProdutCategories> ProdutCategories;
-        public DbSet<Transactions> Transactions;
-        public DbSet<TransactionTypes> TransactionTypes;
-        public DbSet<Payments> Payments;
-        public DbSet<PaymentStates> PaymentStates;
-        public DbSet<PaymentMethodsTypes> PaymentMethodsTypes;
-        public DbSet<Orders> Orders;
-        public DbSet<OrderDetails> OrderDetails;
-        public DbSet<Comments> Comments;
-        public DbSet<BankAccounts> BankAccounts;
-        public DbSet<AccountTypes> AccountTypes;
-
+        public DbSet<Users> users { get; set; }
+        public DbSet<UserStates> UserStates { get; set; }
+        public DbSet<Rols> Rols { get; set; }
+        public DbSet<Produts> Produts { get; set; }
+        public DbSet<ProdutCategories> ProdutCategories { get; set; }
+        public DbSet<Transactions> Transactions { get; set; }
+        public DbSet<TransactionTypes> TransactionTypes { get; set; }
+        public DbSet<Payments> Payments { get; set; }
+        public DbSet<PaymentStates> PaymentStates { get; set; }
+        public DbSet<PaymentMethodsTypes> PaymentMethodsTypes { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Comments> Comments { get; set; }
+        public DbSet<BankAccounts> BankAccounts { get; set; }
+        public DbSet<AccountTypes> AccountTypes { get; set; }
         // OnModelCreating Tarea
     }
 }
