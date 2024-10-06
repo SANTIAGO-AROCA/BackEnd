@@ -23,6 +23,11 @@ namespace BackEndProyecto.Repository
             _context = context;
         }
 
+        public Task CreateUserStatesAsync(UserStates userStates)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<UserStates>> GetAllUserStatesAsync()
         {
             return await _context.UserStates
@@ -45,6 +50,16 @@ namespace BackEndProyecto.Repository
                 userStates.IsDeleted = true;
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public Task SoftDeleteUserStatesAsync(int userStateId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateUserStatesAsync(UserStates userStates)
+        {
+            throw new NotImplementedException();
         }
     }
 }

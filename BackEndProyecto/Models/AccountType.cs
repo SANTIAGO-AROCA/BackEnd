@@ -2,15 +2,15 @@
 
 namespace BackEndProyecto.Models
 {
-    public class AccountTypes
+    public class AccountType
     {
         [Key]
         public required int AccountTypeId { get; set; }
         public required string AccounTypetName { get; set; }
-        public string AccountTypeDescription { get; set; }
+        public required string AccountTypeDescription { get; set; }
         public bool IsDeleted { get; set; } = false;
 
         // Propiedades de navegación Uno a muchos
-        public virtual ICollection<BankAccounts> BankAccounts { get; set; }
+        //public virtual required ICollection<BankAccounts> BankAccounts { get; set; }
     }
 }

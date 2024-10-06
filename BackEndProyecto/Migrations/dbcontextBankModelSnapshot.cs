@@ -22,7 +22,7 @@ namespace BackEndProyecto.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BackEndProyecto.Models.AccountTypes", b =>
+            modelBuilder.Entity("BackEndProyecto.Models.AccountType", b =>
                 {
                     b.Property<int>("AccountTypeId")
                         .ValueGeneratedOnAdd()
@@ -37,6 +37,9 @@ namespace BackEndProyecto.Migrations
                     b.Property<string>("AccountTypeDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("AccountTypeId");
 
@@ -57,13 +60,16 @@ namespace BackEndProyecto.Migrations
                     b.Property<int>("AcountNumber")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Balance")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UsertId")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("movements")
@@ -92,6 +98,9 @@ namespace BackEndProyecto.Migrations
                     b.Property<int>("CommentType")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -114,6 +123,9 @@ namespace BackEndProyecto.Migrations
                     b.Property<int>("Details")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -132,6 +144,9 @@ namespace BackEndProyecto.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -158,6 +173,9 @@ namespace BackEndProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentMethodId"));
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("PaymentMethodDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -178,6 +196,9 @@ namespace BackEndProyecto.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentStateId"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("PaymentStateDescription")
                         .IsRequired()
@@ -202,6 +223,9 @@ namespace BackEndProyecto.Migrations
 
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
@@ -236,6 +260,9 @@ namespace BackEndProyecto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("CategoryId");
 
                     b.ToTable("ProdutCategories");
@@ -251,6 +278,9 @@ namespace BackEndProyecto.Migrations
 
                     b.Property<DateTime>("CrateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -283,6 +313,9 @@ namespace BackEndProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RolsId"));
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("RolDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -308,6 +341,9 @@ namespace BackEndProyecto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("TransactionTypeNames")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -330,6 +366,9 @@ namespace BackEndProyecto.Migrations
 
                     b.Property<int>("AccountOrigin")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
@@ -357,6 +396,9 @@ namespace BackEndProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserStateId"));
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("UserStateDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -378,9 +420,16 @@ namespace BackEndProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -394,17 +443,13 @@ namespace BackEndProyecto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("city")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("users");
                 });
 #pragma warning restore 612, 618
         }

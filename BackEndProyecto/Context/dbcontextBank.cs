@@ -54,23 +54,23 @@ namespace BackEndProyecto.Context
             modelBuilder.Entity<BankAccounts>()
             .HasKey(u => u.AcountId);
 
-            modelBuilder.Entity<AccountTypes>()
+            modelBuilder.Entity<AccountType>()
             .HasKey(u => u.AccountTypeId);
 
             modelBuilder.Entity<UserStates>()
             .HasKey(u => u.UserStateId);
 
-            // Configurar la relación uno a uno entre Users y BankAccounts
+            /* Configurar la relación uno a uno entre Users y BankAccounts
             modelBuilder.Entity<Users>()
             .HasOne(u => u.BankAccount)
             .WithOne(b => b.Users)
             .HasForeignKey<BankAccounts>(b => b.UserId);
 
-            // Configuracion relacion uno a muchos entre BankAccounts y AccountTypes
+          Configuracion relacion uno a muchos entre BankAccounts y AccountTypes 
             modelBuilder.Entity<BankAccounts>()
             .HasOne(b => b.AccountTypes)
             .WithMany(a => a.BankAccounts)
-            .HasForeignKey(b => b.AccountType);
+            .HasForeignKey(b => b.AccountType);*/
         }
 
         public DbSet<Users> users { get; set; }
@@ -87,7 +87,7 @@ namespace BackEndProyecto.Context
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Comments> Comments { get; set; }
         public DbSet<BankAccounts> BankAccounts { get; set; }
-        public DbSet<AccountTypes> AccountTypes { get; set; }
+        public DbSet<AccountType> AccountTypes { get; set; }
         // OnModelCreating Tarea
     }
 }
