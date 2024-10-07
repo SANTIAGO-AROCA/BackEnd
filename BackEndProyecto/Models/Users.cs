@@ -16,6 +16,7 @@ namespace BackEndProyecto.Models
 
         //Propiedades de navegacion
         public virtual BankAccounts BankAccount { get; set; }
+        public virtual ICollection<Comments> Comments { get; set; }
 
     }
 }

@@ -60,6 +60,12 @@ namespace BackEndProyecto.Context
             modelBuilder.Entity<UserStates>()
             .HasKey(u => u.UserStateId);
 
+            modelBuilder.Entity<Suppliers>()
+            .HasKey(u => u.SupplierId);
+
+            modelBuilder.Entity<SupplierStates>()
+            .HasKey(u => u.SupplierStateId);
+
             // Configurar la relación uno a uno entre Users y BankAccounts
             modelBuilder.Entity<Users>()
             .HasOne(u => u.BankAccount)
@@ -71,6 +77,18 @@ namespace BackEndProyecto.Context
             .HasOne(b => b.AccountTypes)
             .WithMany(a => a.BankAccounts)
             .HasForeignKey(b => b.AccountType);
+
+            // Configuracion relacion uno a muchos entre Comments y Users
+            modelBuilder.Entity<Comments>()
+            .HasOne(b => b.Users)
+            .WithMany(a => a.Comments)
+            .HasForeignKey(b => b.UserId);
+
+            // Configuracion relacion uno a muchos entre Suppliers y SupplierStates
+            modelBuilder.Entity<Suppliers>()
+            .HasOne(b => b.SupplierStates)
+            .WithMany(a => a.Suppliers)
+            .HasForeignKey(b => b.SupplierStates);
         }
 
         public DbSet<Users> users { get; set; }
