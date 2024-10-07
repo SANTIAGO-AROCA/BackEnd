@@ -7,7 +7,7 @@ namespace BackEndProyecto.Models
         [Key]
         public int PaymentStateId { get; set; }
         public required string PaymentStatesName { get; set; }
-        public string PaymentStateDescription { get; set; }
+        public required string PaymentStateDescription { get; set; }
         public bool IsDeleted { get; set; } = false;
     }
 }

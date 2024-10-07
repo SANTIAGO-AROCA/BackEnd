@@ -54,7 +54,7 @@ namespace BackEndProyecto.Context
             modelBuilder.Entity<BankAccounts>()
             .HasKey(u => u.AcountId);
 
-            modelBuilder.Entity<AccountTypes>()
+            modelBuilder.Entity<AccountType>()
             .HasKey(u => u.AccountTypeId);
 
             modelBuilder.Entity<UserStates>()
@@ -72,7 +72,7 @@ namespace BackEndProyecto.Context
             .WithOne(b => b.Users)
             .HasForeignKey<BankAccounts>(b => b.UserId);
 
-            // Configuracion relacion uno a muchos entre BankAccounts y AccountTypes
+          Configuracion relacion uno a muchos entre BankAccounts y AccountTypes 
             modelBuilder.Entity<BankAccounts>()
             .HasOne(b => b.AccountTypes)
             .WithMany(a => a.BankAccounts)

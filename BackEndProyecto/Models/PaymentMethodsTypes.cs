@@ -4,7 +4,7 @@
     {
         public int PaymentMethodId { get; set; }
         public required string PaymentMethodName { get; set; }
-        public string PaymentMethodDescription { get; set; }
+        public required string PaymentMethodDescription { get; set; }
         public bool IsDeleted { get; set; } = false;
     }
 }
