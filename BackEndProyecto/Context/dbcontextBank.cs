@@ -78,7 +78,7 @@ namespace BackEndProyecto.Context
             .WithMany(s => s.BankAccounts)
             .HasForeignKey(b => b.AccountTypeId);
 
-            // Configuracion relacion uno a muchos entre Suppliers y SupplierStates
+            // Configuracion relacion uno a muchos entrEe Suppliers y SupplierStates
             modelBuilder.Entity<Suppliers>()
             .HasOne(b => b.SupplierStates)
             .WithMany(a => a.Suppliers)
