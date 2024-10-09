@@ -28,7 +28,6 @@ class Program
                 INSERT INTO TransactionHistory (IdOriginAccount, IdDestinationAccount, Amount, TransactionDate)
                 SELECT i.IdOriginAccount, i.IdDestinationAccount, i.Amount, GETDATE()
                 FROM inserted i;
-                
             END";
         string createTriggerOrders = @"
             CREATE TRIGGER trg_AfterInsert_Order

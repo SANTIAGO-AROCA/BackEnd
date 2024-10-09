@@ -1,6 +1,6 @@
 ﻿namespace BackEndProyecto.Models
 {
-    public class PaymentMethodsTypes
+    public class PaymentMethodsTypesRepository
     {
         public int PaymentMethodId { get; set; }
         public required string PaymentMethodName { get; set; }

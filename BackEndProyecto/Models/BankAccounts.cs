@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace BackEndProyecto.Models
 {
-    public class BankAccounts
+    public class BankAccountsRepository
     {
         [Key]
         public required int AcountId { get; set; }

@@ -1,12 +1,9 @@
-﻿using BackEndProyecto.Context;
-using BackEndProyecto.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
-using static BackEndProyecto.Models.prueba;
-
-namespace BackEndProyecto.Repository
+﻿namespace BackEndProyecto.Repository
 {
-    public interface IUserTypeRepository
+    public class UsersTypeRepository
+    {
+    }
+    /*public interface IUserTypeRepository
     {
         Task<IEnumerable<UserStates >> GetAllSubjectsAsunc();
         Task<UserStates> GetSubjectByIdAsync(int id);
@@ -43,5 +40,5 @@ namespace BackEndProyecto.Repository
                 await _context.SaveChangesAsync();
             }
         }
-    }
+    }*/
 }

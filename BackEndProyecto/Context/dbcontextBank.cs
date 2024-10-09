@@ -1,4 +1,5 @@
 ﻿using BackEndProyecto.Models;
+using BackEndProyecto.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -38,7 +39,7 @@ namespace BackEndProyecto.Context
             modelBuilder.Entity<PaymentStates>()
             .HasKey(u => u.PaymentStateId);
 
-            modelBuilder.Entity<PaymentMethodsTypes>()
+            modelBuilder.Entity<PaymentMethodsTypesRepository>()
             .HasKey(u => u.PaymentMethodId);
 
             modelBuilder.Entity<Orders>()
@@ -50,7 +51,7 @@ namespace BackEndProyecto.Context
             modelBuilder.Entity<Comments>()
             .HasKey(u => u.CommentId);
 
-            modelBuilder.Entity<BankAccounts>()
+            modelBuilder.Entity<BankAccountsRepository>()
             .HasKey(u => u.AcountId);
 
             modelBuilder.Entity<AccountTypes>()
@@ -69,11 +70,11 @@ namespace BackEndProyecto.Context
         public DbSet<TransactionTypes> TransactionTypes { get; set; }
         public DbSet<Payments> Payments { get; set; }
         public DbSet<PaymentStates> PaymentStates { get; set; }
-        public DbSet<PaymentMethodsTypes> PaymentMethodsTypes { get; set; }
+        public DbSet<PaymentMethodsTypesRepository> PaymentMethodsTypes { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Comments> Comments { get; set; }
-        public DbSet<BankAccounts> BankAccounts { get; set; }
+        public DbSet<BankAccountsRepository> BankAccounts { get; set; }
         public DbSet<AccountTypes> AccountTypes { get; set; }
         // OnModelCreating Tarea
     }
