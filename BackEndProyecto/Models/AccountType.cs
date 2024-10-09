@@ -10,7 +10,10 @@ namespace BackEndProyecto.Models
         public required string AccountTypeDescription { get; set; }
         public bool IsDeleted { get; set; } = false;
 
+
         // Propiedades de navegación Uno a muchos
-        //public virtual required ICollection<BankAccounts> BankAccounts { get; set; }
+        public virtual ICollection<BankAccounts> BankAccounts { get; set; }
+
+
     }
 }

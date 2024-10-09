@@ -10,5 +10,7 @@ namespace BackEndProyecto.Models
         public required string Description { get; set; }
         public bool IsDeleted { get; set; } = false;
 
+        // Propiedades de navegacion
+
     }
 }

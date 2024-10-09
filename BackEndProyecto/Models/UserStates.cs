@@ -9,5 +9,7 @@ namespace BackEndProyecto.Models
         public required string UserStateName { get; set; }
         public required string UserStateDescription { get; set; }
         public bool IsDeleted { get; set; } = false;
+
+        // Propiedades de navegacion
     }
 }

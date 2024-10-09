@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEndProyecto.Migrations
 {
     [DbContext(typeof(dbcontextBank))]
-    [Migration("20241006143557_FIX-ERRORss")]
-    partial class FIXERRORss
+    [Migration("20241009101643_conections")]
+    partial class conections
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace BackEndProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AcountId"));
 
-                    b.Property<int>("AccountType")
+                    b.Property<int>("AccountTypeId")
                         .HasColumnType("int");
 
                     b.Property<int>("AcountNumber")
@@ -79,6 +79,11 @@ namespace BackEndProyecto.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("AcountId");
+
+                    b.HasIndex("AccountTypeId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("BankAccounts");
                 });
@@ -112,6 +117,8 @@ namespace BackEndProyecto.Migrations
 
                     b.HasKey("CommentId");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("Comments");
                 });
 
@@ -123,8 +130,9 @@ namespace BackEndProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailsId"));
 
-                    b.Property<int>("Details")
-                        .HasColumnType("int");
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -135,7 +143,12 @@ namespace BackEndProyecto.Migrations
                     b.Property<int>("ProductQuantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProdutsProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderDetailsId");
+
+                    b.HasIndex("ProdutsProductId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -163,7 +176,14 @@ namespace BackEndProyecto.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("usersUserId")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderId");
+
+                    b.HasIndex("PaymentId");
+
+                    b.HasIndex("usersUserId");
 
                     b.ToTable("Orders");
                 });
@@ -233,7 +253,7 @@ namespace BackEndProyecto.Migrations
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PaymentMethodType")
+                    b.Property<int>("PaymentMethodTypeID")
                         .HasColumnType("int");
 
                     b.Property<int>("PaymentState")
@@ -244,7 +264,35 @@ namespace BackEndProyecto.Migrations
 
                     b.HasKey("PaymentId");
 
+                    b.HasIndex("PaymentMethodTypeID");
+
+                    b.HasIndex("PaymentState");
+
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.ProductsStates", b =>
+                {
+                    b.Property<int>("ProductStateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductStateId"));
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ProductStateDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductStateName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductStateId");
+
+                    b.ToTable("ProductsStates");
                 });
 
             modelBuilder.Entity("BackEndProyecto.Models.ProdutCategories", b =>
@@ -291,8 +339,9 @@ namespace BackEndProyecto.Migrations
                     b.Property<int>("ProductCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductDescription")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductName")
                         .HasColumnType("int");
@@ -300,10 +349,32 @@ namespace BackEndProyecto.Migrations
                     b.Property<int>("ProductStateId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ProdutCategoriesCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransactionTypesId")
+                        .HasColumnType("int");
+
                     b.Property<int>("VendorId")
                         .HasColumnType("int");
 
+                    b.Property<int>("usersUserId")
+                        .HasColumnType("int");
+
                     b.HasKey("ProductId");
+
+                    b.HasIndex("ProductStateId");
+
+                    b.HasIndex("ProdutCategoriesCategoryId");
+
+                    b.HasIndex("SupplierId");
+
+                    b.HasIndex("TransactionTypesId");
+
+                    b.HasIndex("usersUserId");
 
                     b.ToTable("Produts");
                 });
@@ -330,6 +401,53 @@ namespace BackEndProyecto.Migrations
                     b.HasKey("RolsId");
 
                     b.ToTable("Rols");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.SupplierStates", b =>
+                {
+                    b.Property<int>("SupplierStateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierStateId"));
+
+                    b.Property<string>("SupplierState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierStateDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SupplierStateId");
+
+                    b.ToTable("SupplierStates");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Suppliers", b =>
+                {
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SupplierAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SupplierId");
+
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("BackEndProyecto.Models.TransactionTypes", b =>
@@ -388,6 +506,8 @@ namespace BackEndProyecto.Migrations
 
                     b.HasKey("TransactionId");
 
+                    b.HasIndex("TransactionTypeId");
+
                     b.ToTable("Transactions");
                 });
 
@@ -423,10 +543,6 @@ namespace BackEndProyecto.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -442,7 +558,17 @@ namespace BackEndProyecto.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RolID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StateID")
+                        .HasColumnType("int");
+
                     b.Property<string>("address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("city")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -452,7 +578,190 @@ namespace BackEndProyecto.Migrations
 
                     b.HasKey("UserId");
 
+                    b.HasIndex("RolID");
+
+                    b.HasIndex("StateID");
+
                     b.ToTable("users");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.BankAccounts", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.AccountType", "AccountType")
+                        .WithMany("BankAccounts")
+                        .HasForeignKey("AccountTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndProyecto.Models.Users", "Users")
+                        .WithOne("BankAccount")
+                        .HasForeignKey("BackEndProyecto.Models.BankAccounts", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AccountType");
+
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Comments", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.Produts", "Produts")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produts");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.OrderDetails", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.Produts", "Produts")
+                        .WithMany()
+                        .HasForeignKey("ProdutsProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produts");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Orders", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.Payments", "Payments")
+                        .WithMany()
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndProyecto.Models.Users", "users")
+                        .WithMany()
+                        .HasForeignKey("usersUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Payments");
+
+                    b.Navigation("users");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Payments", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.PaymentMethodsTypes", "PaymentMethodsTypes")
+                        .WithMany()
+                        .HasForeignKey("PaymentMethodTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndProyecto.Models.PaymentStates", "PaymentStates")
+                        .WithMany()
+                        .HasForeignKey("PaymentState")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PaymentMethodsTypes");
+
+                    b.Navigation("PaymentStates");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Produts", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.ProductsStates", "ProductsStates")
+                        .WithMany()
+                        .HasForeignKey("ProductStateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndProyecto.Models.ProdutCategories", "ProdutCategories")
+                        .WithMany()
+                        .HasForeignKey("ProdutCategoriesCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndProyecto.Models.Suppliers", "Suppliers")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndProyecto.Models.TransactionTypes", "TransactionTypes")
+                        .WithMany()
+                        .HasForeignKey("TransactionTypesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndProyecto.Models.Users", "users")
+                        .WithMany()
+                        .HasForeignKey("usersUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductsStates");
+
+                    b.Navigation("ProdutCategories");
+
+                    b.Navigation("Suppliers");
+
+                    b.Navigation("TransactionTypes");
+
+                    b.Navigation("users");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Suppliers", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.SupplierStates", "SupplierStates")
+                        .WithMany("Suppliers")
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SupplierStates");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Transactions", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.TransactionTypes", "TransactionTypes")
+                        .WithMany()
+                        .HasForeignKey("TransactionTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TransactionTypes");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Users", b =>
+                {
+                    b.HasOne("BackEndProyecto.Models.Rols", "Rols")
+                        .WithMany()
+                        .HasForeignKey("RolID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndProyecto.Models.UserStates", "UserStates")
+                        .WithMany()
+                        .HasForeignKey("StateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rols");
+
+                    b.Navigation("UserStates");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.AccountType", b =>
+                {
+                    b.Navigation("BankAccounts");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.SupplierStates", b =>
+                {
+                    b.Navigation("Suppliers");
+                });
+
+            modelBuilder.Entity("BackEndProyecto.Models.Users", b =>
+                {
+                    b.Navigation("BankAccount")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

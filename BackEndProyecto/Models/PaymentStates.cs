@@ -9,5 +9,7 @@ namespace BackEndProyecto.Models
         public required string PaymentStatesName { get; set; }
         public required string PaymentStateDescription { get; set; }
         public bool IsDeleted { get; set; } = false;
+
+        // Propiedades de navegacion
     }
 }

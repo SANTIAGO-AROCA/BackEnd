@@ -9,5 +9,7 @@ namespace BackEndProyecto.Models
         public required string ProductStateName { get; set; }
         public required string ProductStateDescription { get; set; }
         public bool IsDeleted { get; set; } = false;
+
+        // Propiedades de navegacion
     }
 }

@@ -6,18 +6,18 @@ namespace BackEndProyecto.Models
     {
         [Key]
         public required int AcountId { get; set; }
-        //[ForeignKey("Users")]
+        [ForeignKey("Users")]
         public required int UserId { get; set; }
         public required int AcountNumber { get; set; }
-        //[ForeignKey("AccountTypes")]
-        public required int AccountType {  get; set; }
+        [ForeignKey("AccountTypes")]
+        public required int AccountTypeId {  get; set; }
         public required float Balance { get; set; }
         public required int movements { get; set; }
         public required DateTime CreationDate { get; set; }
         public bool IsDeleted { get; set; } = false;
 
         // Propiedades de navegación
-        //public virtual required Users Users { get; set; }
-        //public virtual required AccountType AccountTypes { get; set; }
+        public  Users Users { get; set; }
+        public AccountType AccountType { get; set; }
     }
 }

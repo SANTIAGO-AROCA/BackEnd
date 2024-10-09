@@ -7,6 +7,8 @@ namespace BackEndProyecto.Models
     {
         [Key]
         public required int ProductId { get; set; }
+        [ForeignKey("Users")]
+        public required int VendorId { get; set; }
         public required int ProductName { get; set; }
         public required String ProductDescription { get; set; }
         [ForeignKey("Suppliers")]
@@ -17,11 +19,19 @@ namespace BackEndProyecto.Models
         public required DateTime CrateDate { get; set; }
         [ForeignKey("ProductsStates")]
         public required int ProductStateId { get; set; }
+        [ForeignKey("TransactionTypes")]
+        public required int TransactionTypesId { get; set; }
         public bool IsDeleted { get; set; } = false;
 
         // Propiedades de navegacion
         public virtual ProdutCategories ProdutCategories { get; set; }
         public virtual ProductsStates ProductsStates { get; set; }
+
+        public virtual Users users { get; set; }
+
+        public virtual TransactionTypes TransactionTypes { get; set; }
+
+        public virtual Suppliers Suppliers { get; set; }
 
     }
 }

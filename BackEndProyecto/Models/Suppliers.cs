@@ -14,6 +14,6 @@ namespace BackEndProyecto.Models
         public required string SupplierAddress { get; set; }
 
         //Propiedades navegacion
-        public virtual SupplierStates SupplierStates { get; set; }
+        public SupplierStates SupplierStates { get; set; }
     }
 }

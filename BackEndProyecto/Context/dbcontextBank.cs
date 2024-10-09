@@ -8,7 +8,7 @@ namespace BackEndProyecto.Context
     {
         public dbcontextBank(DbContextOptions options): base(options)
         {
-            
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -16,7 +16,7 @@ namespace BackEndProyecto.Context
 
             //Llaves primarias
             modelBuilder.Entity<Users>()
-            .HasKey( u => u.UserId);
+            .HasKey(u => u.UserId);
 
             modelBuilder.Entity<Rols>()
             .HasKey(u => u.RolsId);
@@ -72,23 +72,19 @@ namespace BackEndProyecto.Context
             .WithOne(b => b.Users)
             .HasForeignKey<BankAccounts>(b => b.UserId);
 
-          Configuracion relacion uno a muchos entre BankAccounts y AccountTypes 
+            //Configuracion relacion uno a muchos entre BankAccounts y AccountTypes 
             modelBuilder.Entity<BankAccounts>()
-            .HasOne(b => b.AccountTypes)
-            .WithMany(a => a.BankAccounts)
-            .HasForeignKey(b => b.AccountType);
-
-            // Configuracion relacion uno a muchos entre Comments y Users
-            modelBuilder.Entity<Comments>()
-            .HasOne(b => b.Users)
-            .WithMany(a => a.Comments)
-            .HasForeignKey(b => b.UserId);
+            .HasOne(u => u.AccountType)
+            .WithMany(s => s.BankAccounts)
+            .HasForeignKey(b => b.AccountTypeId);
 
             // Configuracion relacion uno a muchos entre Suppliers y SupplierStates
             modelBuilder.Entity<Suppliers>()
             .HasOne(b => b.SupplierStates)
             .WithMany(a => a.Suppliers)
-            .HasForeignKey(b => b.SupplierStates);
+            .HasForeignKey(b => b.SupplierId);
+
+            
         }
 
         public DbSet<Users> users { get; set; }
@@ -105,7 +101,7 @@ namespace BackEndProyecto.Context
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Comments> Comments { get; set; }
         public DbSet<BankAccounts> BankAccounts { get; set; }
-        public DbSet<AccountTypes> AccountTypes { get; set; }
-        // OnModelCreating Tarea
+        public DbSet<AccountType> AccountTypes { get; set; }
+        
     }
 }
