@@ -102,6 +102,6 @@ namespace BackEndProyecto.Context
         public DbSet<Comments> Comments { get; set; }
         public DbSet<BankAccounts> BankAccounts { get; set; }
         public DbSet<AccountType> AccountTypes { get; set; }
-        
+        public IEnumerable<object> ProductsStates { get; internal set; }
     }
 }
